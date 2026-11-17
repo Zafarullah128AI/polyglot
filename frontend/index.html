@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polyglot — Programming Language Identifier</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+  <div class="brand"><span class="prompt">&gt;_</span> POLYGLOT <span class="tag">code language identifier</span></div>
+  <div class="status"><span class="pulse"></span><span id="healthLine">starting…</span></div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="identify">⌨ Identify</button>
+  <button class="tab" data-tab="arena">⚔ Model Arena</button>
+  <button class="tab" data-tab="length">📏 Length Lab</button>
+  <button class="tab" data-tab="dataset">🗂 Dataset</button>
+</nav>
+
+<main>
+  <!-- ============ IDENTIFY ============ -->
+  <section id="tab-identify" class="panel active">
+    <div class="identify-grid">
+      <div class="editor-card">
+        <div class="editor-head">
+          <span>untitled_snippet.txt</span>
+          <span class="meta" id="lenMeta">0 lines · 0 chars</span>
+        </div>
+        <div class="editor-body">
+          <div class="gutter" id="gutter">1</div>
+          <textarea id="codeInput" spellcheck="false" placeholder="Paste a code snippet here…
+try:  print(&quot;Hello, World!&quot;)"></textarea>
+        </div>
+        <div class="editor-foot">
+          <div class="samples">
+            <span>Try a sample:</span>
+            <div class="chips" id="sampleChips"></div>
+          </div>
+          <div class="actions">
+            <button class="btn ghost" id="clearBtn">Clear</button>
+            <button class="btn primary" id="identifyBtn">▶ Identify Language</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card" id="resultCard">
+        <div class="result-empty" id="resultEmpty">
+          <div class="big-cursor">▌</div>
+          <p>Paste a snippet and hit <b>Identify Language</b>.<br>
+          Three models will vote on which language it is.</p>
+        </div>
+        <div class="result-body" id="resultBody" hidden>
+          <div class="pred-line">
+            <span class="pred-label">detected language</span>
+            <span class="pred-lang" id="predLang">—</span>
+            <span class="pred-conf" id="predConf">—</span>
+          </div>
+          <div class="conf-bar"><div class="conf-fill" id="confFill"></div></div>
+          <div class="agree" id="agreeLine"></div>
+          <div class="sub">top candidates</div>
+          <div id="top3"></div>
+          <div class="sub">model votes</div>
+          <div id="votes"></div>
+          <div class="len-chip" id="lenChip"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODEL ARENA ============ -->
+  <section id="tab-arena" class="panel">
+    <h2>Model Arena <span class="hint">— 3 models, same test set, head-to-head</span></h2>
+    <div class="cards" id="modelCards"></div>
+    <div class="two-col">
+      <div class="box">
+        <h3>Comparison table</h3>
+        <table class="tbl" id="compareTable"></table>
+      </div>
+      <div class="box">
+        <h3>Confusion matrix <span class="hint" id="cmModel"></span></h3>
+        <div class="cm-wrap" id="cmWrap"></div>
+        <p class="note">Rows = true language, columns = predicted language. Hold-out test set (20%).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LENGTH LAB ============ -->
+  <section id="tab-length" class="panel">
+    <h2>Length Lab <span class="hint">— accuracy vs snippet length</span></h2>
+    <p class="lead">Short snippets are the hardest: a one-line <code>print()</code> looks alike in many
+    languages. This lab scores every model separately on short (1–3 lines), medium (4–10 lines)
+    and long (11+ lines) snippets, using 5-fold cross-validation on the full dataset.</p>
+    <div class="box">
+      <h3>Accuracy by length bucket</h3>
+      <div id="lengthChart"></div>
+      <table class="tbl" id="lengthTable"></table>
+    </div>
+    <div class="box">
+      <h3>Test it yourself</h3>
+      <p class="note">Paste any snippet on the <b>Identify</b> tab — its length bucket is shown
+      under the result, so you can see which bucket your snippet falls into.</p>
+    </div>
+  </section>
+
+  <!-- ============ DATASET ============ -->
+  <section id="tab-dataset" class="panel">
+    <h2>Dataset <span class="hint" id="dsSummary"></span></h2>
+    <div class="two-col">
+      <div class="box">
+        <h3>Snippets per language</h3>
+        <div id="langBars"></div>
+        <h3 style="margin-top:22px">Browse samples</h3>
+        <div class="row">
+          <select id="browseLang"></select>
+          <button class="btn ghost" id="anotherBtn">↻ Another sample</button>
+        </div>
+        <pre class="sample-view" id="sampleView">// pick a language to see a sample snippet</pre>
+      </div>
+      <div class="box">
+        <h3>Teach it a new snippet</h3>
+        <p class="note">Add a snippet and all 3 models retrain instantly on the bigger dataset.</p>
+        <label class="lbl">Language</label>
+        <select id="addLang"></select>
+        <label class="lbl">Code</label>
+        <textarea id="addCode" rows="6" spellcheck="false" placeholder="Paste code here…"></textarea>
+        <button class="btn primary" id="addBtn">＋ Add &amp; retrain</button>
+        <div class="msg" id="addMsg"></div>
+        <h3 style="margin-top:22px">Bulk upload (CSV)</h3>
+        <p class="note">CSV with two columns: <code>language,code</code> — one snippet per row.</p>
+        <input type="file" id="csvFile" accept=".csv">
+        <button class="btn primary" id="uploadBtn">⇪ Upload &amp; retrain</button>
+        <div class="msg" id="uploadMsg"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>POLYGLOT · text classification with character n-grams · built for the ML exhibition</span>
+  <span>Prepared for <b>Tarique Aziz (24BSIT118)</b></span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

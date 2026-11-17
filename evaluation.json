@@ -1,0 +1,278 @@
+{
+  "models": {
+    "Logistic Regression": {
+      "accuracy": 0.95,
+      "precision": 0.96,
+      "recall": 0.95,
+      "f1": 0.9492,
+      "test_size": 40
+    },
+    "Naive Bayes": {
+      "accuracy": 0.85,
+      "precision": 0.87,
+      "recall": 0.85,
+      "f1": 0.8468,
+      "test_size": 40
+    },
+    "Linear SVM": {
+      "accuracy": 0.95,
+      "precision": 0.96,
+      "recall": 0.95,
+      "f1": 0.9492,
+      "test_size": 40
+    }
+  },
+  "best_model": "Logistic Regression",
+  "labels": [
+    "C",
+    "C#",
+    "C++",
+    "Go",
+    "Java",
+    "JavaScript",
+    "PHP",
+    "Python",
+    "Rust",
+    "TypeScript"
+  ],
+  "per_language": [
+    {
+      "language": "C",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    {
+      "language": "C#",
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "support": 4
+    },
+    {
+      "language": "C++",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    {
+      "language": "Go",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    {
+      "language": "Java",
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.8889,
+      "support": 4
+    },
+    {
+      "language": "JavaScript",
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.8889,
+      "support": 4
+    },
+    {
+      "language": "PHP",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    {
+      "language": "Python",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    {
+      "language": "Rust",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    {
+      "language": "TypeScript",
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "support": 4
+    }
+  ],
+  "confusion_matrix": [
+    [
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      3,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      3
+    ]
+  ],
+  "by_length": {
+    "Logistic Regression": {
+      "short": {
+        "accuracy": 0.8095,
+        "n": 21
+      },
+      "medium": {
+        "accuracy": 0.9068,
+        "n": 118
+      },
+      "long": {
+        "accuracy": 0.9672,
+        "n": 61
+      }
+    },
+    "Naive Bayes": {
+      "short": {
+        "accuracy": 0.5714,
+        "n": 21
+      },
+      "medium": {
+        "accuracy": 0.8136,
+        "n": 118
+      },
+      "long": {
+        "accuracy": 0.918,
+        "n": 61
+      }
+    },
+    "Linear SVM": {
+      "short": {
+        "accuracy": 0.8571,
+        "n": 21
+      },
+      "medium": {
+        "accuracy": 0.9068,
+        "n": 118
+      },
+      "long": {
+        "accuracy": 0.9672,
+        "n": 61
+      }
+    }
+  },
+  "test_size": 40,
+  "train_size": 160
+}

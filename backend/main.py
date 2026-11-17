@@ -74,7 +74,8 @@ def _open_browser_when_ready():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    threading.Thread(target=_open_browser_when_ready, daemon=True).start()
+    if os.environ.get("VERCEL") != "1":
+        threading.Thread(target=_open_browser_when_ready, daemon=True).start()
     yield
 
 

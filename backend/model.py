@@ -33,7 +33,16 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(BASE, "data.csv")
+if os.environ.get("VERCEL") == "1":
+    # Vercel's filesystem is read-only except /tmp: work on a /tmp copy
+    # of the dataset so add-snippet + retrain keep working per instance.
+    DATA_PATH = os.path.join("/tmp", "polyglot_data.csv")
+    if not os.path.exists(DATA_PATH):
+        import shutil
+
+        shutil.copy(os.path.join(BASE, "data.csv"), DATA_PATH)
+else:
+    DATA_PATH = os.path.join(BASE, "data.csv")
 
 LANGUAGES = ["C", "C#", "C++", "Go", "Java", "JavaScript", "PHP", "Python", "Rust", "TypeScript"]
 BUCKETS = ["short", "medium", "long"]
